@@ -8,9 +8,21 @@ extends CharacterBody2D
 @export var jump_forse: float = 180.0
 @export var unjump_forse: float = 25.0
 
+@export_category("Speed")
+@export var max_speed: float = 290
+@export var acceleration: float = 150
+
+@export_category("Froction")
+@export var friction: float = 200
+@export var air_friction: float = 60
+
+
 func _physics_process(delta: float) -> void:
-	velocity.x += 500.0 * delta
-	velocity.x = min(velocity.x, 100.0)
+	if velocity.x < max_speed:
+		velocity.x = move_toward(velocity.x, max_speed, acceleration * delta)
+	
+	#velocity.x += 500.0 * delta
+	#velocity.x = min(velocity.x, 100.0)
 		
 	if is_on_floor():
 		if Input.is_action_just_pressed("ui_up"):
