@@ -23,6 +23,7 @@ func _physics_process(delta: float) -> void:
 			velocity.x = move_toward(velocity.x, max_speed, acceleration * delta)
 		else:
 			velocity.x = move_toward(velocity.x, max_speed, friction * delta)
+			
 		if Input.is_action_just_pressed("ui_up"):
 			velocity.y = -jump_forse
 	else:

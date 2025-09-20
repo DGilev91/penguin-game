@@ -22,4 +22,4 @@ position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_cvnsp")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2(0, -16)
+offset = Vector2(64, -16)
