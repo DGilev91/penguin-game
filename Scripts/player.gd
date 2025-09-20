@@ -18,16 +18,16 @@ extends CharacterBody2D
 
 
 func _physics_process(delta: float) -> void:
-	if velocity.x < max_speed:
-		velocity.x = move_toward(velocity.x, max_speed, acceleration * delta)
-	
-	#velocity.x += 500.0 * delta
-	#velocity.x = min(velocity.x, 100.0)
-		
 	if is_on_floor():
+		if velocity.x <= max_speed:
+			velocity.x = move_toward(velocity.x, max_speed, acceleration * delta)
+		else:
+			velocity.x = move_toward(velocity.x, max_speed, friction * delta)
 		if Input.is_action_just_pressed("ui_up"):
 			velocity.y = -jump_forse
 	else:
+		velocity.x = move_toward(velocity.x, 0, air_friction * delta)
+		
 		if Input.is_action_just_released("ui_up"):
 			velocity.y = unjump_forse
 			
