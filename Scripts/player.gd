@@ -11,6 +11,7 @@ extends CharacterBody2D
 @export_category("Speed")
 @export var max_speed: float = 290
 @export var acceleration: float = 150
+@export var landing_acceleration: float = 2250.0
 
 @export_category("Froction")
 @export var friction: float = 200
@@ -37,4 +38,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity.y += up_gravity * delta
 	
+	var prev_velocity: Vector2 = velocity
 	move_and_slide()
+	if velocity.y == 0 and prev_velocity.y > 5:
+		velocity.x += landing_acceleration * delta
