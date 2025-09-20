@@ -7,7 +7,7 @@
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-polygon = PackedVector2Array(0, 128, 64, 128, 64, 112, 128, 112, 176, 128, 256, 128, 280, 112, 352, 112, 424, 128, 467.6015, 127.959694, 520, 112, 592, 112, 904, 112, 904, 96, 944, 96, 944, 184, 352, 184, 0, 184)
+polygon = PackedVector2Array(-384, 128, 64, 128, 88, 112, 128, 112, 128, 128, 256, 128, 280, 112, 352, 112, 424, 128, 467.6015, 127.959694, 520, 112, 592, 112, 904, 112, 904, 96, 944, 96, 944, 184, 352, 184, -384, 176)
 
 [node name="Player" parent="." instance=ExtResource("1_tumq0")]
-position = Vector2(99, 82)
+position = Vector2(-152, 128)
