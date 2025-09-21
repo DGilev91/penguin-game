@@ -9,7 +9,9 @@ size = Vector2(12, 16)
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_cvnsp")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Anchor" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Anchor"]
 position = Vector2(0, -5)
 texture = ExtResource("1_v0iea")
 offset = Vector2(0, -8)

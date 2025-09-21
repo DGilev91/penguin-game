@@ -17,11 +17,11 @@ extends CharacterBody2D
 @export var friction: float = 200
 @export var air_friction: float = 60
 
-@onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var anchor: Node2D = $Anchor
+@onready var sprite_2d: Sprite2D = $Anchor/Sprite2D
+
 
 var target_titl: float = 0.0
-
-
 
 func _physics_process(delta: float) -> void:
 	if is_on_floor():
@@ -49,6 +49,8 @@ func _physics_process(delta: float) -> void:
 	var prev_velocity: Vector2 = velocity
 	move_and_slide()
 	if velocity.y == 0 and prev_velocity.y > 5:
+		anchor.scale = Vector2(1.5, 0.8)
 		velocity.x += landing_acceleration * delta
 		
 	sprite_2d.rotation_degrees = lerp(sprite_2d.rotation_degrees, target_titl, 0.2)
+	anchor.scale = anchor.scale.lerp(Vector2.ONE, 0.05)
