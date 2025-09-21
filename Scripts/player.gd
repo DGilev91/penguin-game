@@ -17,17 +17,25 @@ extends CharacterBody2D
 @export var friction: float = 200
 @export var air_friction: float = 60
 
+@onready var sprite_2d: Sprite2D = $Sprite2D
+
+var target_titl: float = 0.0
+
+
 
 func _physics_process(delta: float) -> void:
 	if is_on_floor():
+		target_titl = 0.0
+		
 		if velocity.x <= max_speed:
 			velocity.x = move_toward(velocity.x, max_speed, acceleration * delta)
 		else:
 			velocity.x = move_toward(velocity.x, max_speed, friction * delta)
-			
 		if Input.is_action_just_pressed("ui_up"):
 			velocity.y = -jump_forse
 	else:
+		target_titl = clamp(velocity.y / 4, 0,  air_friction * delta)
+		
 		velocity.x = move_toward(velocity.x, 0, air_friction * delta)
 		
 		if Input.is_action_just_released("ui_up"):
