@@ -34,7 +34,7 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("ui_up"):
 			velocity.y = -jump_forse
 	else:
-		target_titl = clamp(velocity.y / 4, 0,  air_friction * delta)
+		target_titl = clamp(velocity.y / 4,  -30, 30)
 		
 		velocity.x = move_toward(velocity.x, 0, air_friction * delta)
 		
@@ -50,3 +50,5 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	if velocity.y == 0 and prev_velocity.y > 5:
 		velocity.x += landing_acceleration * delta
+		
+	sprite_2d.rotation_degrees = lerp(sprite_2d.rotation_degrees, target_titl, 0.2)
