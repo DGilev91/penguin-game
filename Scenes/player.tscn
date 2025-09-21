@@ -7,6 +7,8 @@
 size = Vector2(12, 16)
 
 [node name="Player" type="CharacterBody2D"]
+floor_constant_speed = true
+floor_snap_length = 8.0
 script = ExtResource("1_cvnsp")
 
 [node name="Anchor" type="Node2D" parent="."]
