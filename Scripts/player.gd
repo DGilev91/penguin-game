@@ -13,6 +13,7 @@ extends CharacterBody2D
 @export var acceleration: float = 150
 @export var landing_acceleration: float = 2250.0
 @export var air_jump_speed_reduction: float = 1500
+@export var coyote_time_amount: float = 0.15
 
 @export_category("Froction")
 @export var friction: float = 200
@@ -24,9 +25,12 @@ extends CharacterBody2D
 
 var target_titl: float = 0.0
 var air_jump: bool = true
+var coyote_time: float = 0.0
 
 func _physics_process(delta: float) -> void:
-	if is_on_floor():
+	coyote_time += delta
+	
+	if is_on_floor() or coyote_time <= coyote_time_amount:
 		air_jump = true
 		target_titl = 0.0
 		
@@ -34,6 +38,7 @@ func _physics_process(delta: float) -> void:
 			velocity.x = move_toward(velocity.x, max_speed, acceleration * delta)
 		else:
 			velocity.x = move_toward(velocity.x, max_speed, friction * delta)
+			
 		if Input.is_action_just_pressed("ui_up"):
 			velocity.y = -jump_forse
 	else:
@@ -58,7 +63,15 @@ func _physics_process(delta: float) -> void:
 			velocity.y += up_gravity * delta
 	
 	var prev_velocity: Vector2 = velocity
+	var was_on_floor = is_on_floor()
+	
 	move_and_slide()
+	
+	var just_left_ladge: bool = was_on_floor and not is_on_floor() and velocity.y >= 0
+	if just_left_ladge:
+		coyote_time = 0.0
+	
+	
 	if velocity.y == 0 and prev_velocity.y > 5:
 		anchor.scale = Vector2(1.5, 0.8)
 		velocity.x += landing_acceleration * delta
