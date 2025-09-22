@@ -12,6 +12,7 @@ extends CharacterBody2D
 @export var max_speed: float = 290
 @export var acceleration: float = 150
 @export var landing_acceleration: float = 2250.0
+@export var air_jump_speed_reduction: float = 1500
 
 @export_category("Froction")
 @export var friction: float = 200
@@ -22,9 +23,11 @@ extends CharacterBody2D
 
 
 var target_titl: float = 0.0
+var air_jump: bool = true
 
 func _physics_process(delta: float) -> void:
 	if is_on_floor():
+		air_jump = true
 		target_titl = 0.0
 		
 		if velocity.x <= max_speed:
@@ -37,6 +40,14 @@ func _physics_process(delta: float) -> void:
 		target_titl = clamp(velocity.y / 4,  -30, 30)
 		
 		velocity.x = move_toward(velocity.x, 0, air_friction * delta)
+		
+		if Input.is_action_just_pressed("ui_up") and air_jump:
+			velocity.y = -jump_forse
+			velocity.x -= air_jump_speed_reduction * delta
+			air_jump = false
+			var tween = create_tween()
+			tween.tween_property(sprite_2d, "rotation_degrees", 0, 0.4).from(360 + sprite_2d.rotation_degrees)
+			tween.play()
 		
 		if Input.is_action_just_released("ui_up"):
 			velocity.y = unjump_forse
