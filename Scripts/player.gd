@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name Player extends CharacterBody2D
 
 @export_category("Gravity")
 @export var up_gravity: float = 250.0
@@ -26,9 +26,12 @@ extends CharacterBody2D
 var target_titl: float = 0.0
 var air_jump: bool = true
 var coyote_time: float = 0.0
+var finish_x = -1
 
 func _physics_process(delta: float) -> void:
 	coyote_time += delta
+		
+	check_for_finish_line.call_deferred()
 	
 	if is_on_floor() or coyote_time <= coyote_time_amount:
 		air_jump = true
@@ -78,3 +81,9 @@ func _physics_process(delta: float) -> void:
 		
 	sprite_2d.rotation_degrees = lerp(sprite_2d.rotation_degrees, target_titl, 0.2)
 	anchor.scale = anchor.scale.lerp(Vector2.ONE, 0.05)
+
+
+
+func check_for_finish_line() -> void:
+	if global_position.x > finish_x and finish_x != -1:
+		process_mode = Node.PROCESS_MODE_DISABLED

@@ -30,9 +30,21 @@ metadata/_custom_type_script = "uid://cc535bplgc1qp"
 
 [node name="Player" parent="." instance=ExtResource("1_tumq0")]
 position = Vector2(-152, 128)
+up_gravity = null
+down_gravity = null
+jump_forse = null
+unjump_forse = null
+max_speed = null
+acceleration = null
+landing_acceleration = null
+air_jump_speed_reduction = null
+coyote_time_amount = null
+friction = null
+air_friction = null
 
-[node name="FinishLine" parent="." instance=ExtResource("3_6phgx")]
+[node name="FinishLine" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_6phgx")]
 offset_left = 3856.0
 offset_top = -960.0
 offset_right = 3984.0
 offset_bottom = 200.0
+player = NodePath("../Player")
