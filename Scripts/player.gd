@@ -31,7 +31,7 @@ var finish_x = -1
 func _physics_process(delta: float) -> void:
 	coyote_time += delta
 		
-	check_for_finish_line.call_deferred()
+	check_for_finish_line()
 	
 	if is_on_floor() or coyote_time <= coyote_time_amount:
 		air_jump = true
@@ -86,4 +86,4 @@ func _physics_process(delta: float) -> void:
 
 func check_for_finish_line() -> void:
 	if global_position.x > finish_x and finish_x != -1:
-		process_mode = Node.PROCESS_MODE_DISABLED
+		set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)

@@ -1,10 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://3luu051cdaco"]
+[gd_scene load_steps=5 format=3 uid="uid://3luu051cdaco"]
 
+[ext_resource type="Script" uid="uid://r27cl64du2rn" path="res://Scripts/level.gd" id="1_81xng"]
 [ext_resource type="Script" uid="uid://cc535bplgc1qp" path="res://Scripts/visible_collision_polygon_2d.gd" id="1_k5f4k"]
 [ext_resource type="PackedScene" uid="uid://demrxy413cvy6" path="res://Scenes/player.tscn" id="1_tumq0"]
 [ext_resource type="PackedScene" uid="uid://dqajdavgu88io" path="res://Scenes/finish_line.tscn" id="3_6phgx"]
 
 [node name="Level" type="Node2D"]
+script = ExtResource("1_81xng")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -30,17 +32,6 @@ metadata/_custom_type_script = "uid://cc535bplgc1qp"
 
 [node name="Player" parent="." instance=ExtResource("1_tumq0")]
 position = Vector2(-152, 128)
-up_gravity = null
-down_gravity = null
-jump_forse = null
-unjump_forse = null
-max_speed = null
-acceleration = null
-landing_acceleration = null
-air_jump_speed_reduction = null
-coyote_time_amount = null
-friction = null
-air_friction = null
 
 [node name="FinishLine" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_6phgx")]
 offset_left = 3856.0
