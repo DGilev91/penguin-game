@@ -1,5 +1,8 @@
 class_name Player extends CharacterBody2D
 
+signal level_finished() 
+
+
 @export_category("Gravity")
 @export var up_gravity: float = 250.0
 @export var down_gravity: float = 500.0
@@ -86,4 +89,4 @@ func _physics_process(delta: float) -> void:
 
 func check_for_finish_line() -> void:
 	if global_position.x > finish_x and finish_x != -1:
-		set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
+		level_finished.emit()
