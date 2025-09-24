@@ -99,6 +99,9 @@ func _physics_process(delta: float) -> void:
 	var y_offset_target: float = clamp(ray_cast_2d.get_collision_point().y - global_position.y, -16, 64)
 	camera_2d.offset.y = lerp(camera_2d.offset.y, y_offset_target, 0.01)
 	
+	#var x_offset_target: float = clamp(velocity.x, - 125,  128)
+	#camera_2d.offset.x = lerp(camera_2d.offset.x, x_offset_target, 0.01)
+	
 	var zoom_target_amount: float = clamp(max_zoom_amount - (velocity.x / 150), min_zoom_amount , max_zoom_amount)
 	var zoom_target: Vector2 = Vector2(zoom_target_amount, zoom_target_amount)
 	camera_2d.zoom = camera_2d.zoom.lerp(zoom_target, 0.02)
