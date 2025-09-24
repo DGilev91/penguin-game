@@ -22,14 +22,23 @@ signal level_finished()
 @export var friction: float = 200
 @export var air_friction: float = 60
 
+@export_category("Zoom")
+@export var min_zoom_amount: float = 0.9
+@export var max_zoom_amount: float = 1.5
+
 @onready var anchor: Node2D = $Anchor
 @onready var sprite_2d: Sprite2D = $Anchor/Sprite2D
+@onready var camera_2d: Camera2D = $Camera2D
 
 
 var target_titl: float = 0.0
 var air_jump: bool = true
 var coyote_time: float = 0.0
 var finish_x = -1
+
+func _ready() -> void:
+	camera_2d.zoom = Vector2(max_zoom_amount, max_zoom_amount)
+
 
 func _physics_process(delta: float) -> void:
 	coyote_time += delta
@@ -84,8 +93,10 @@ func _physics_process(delta: float) -> void:
 		
 	sprite_2d.rotation_degrees = lerp(sprite_2d.rotation_degrees, target_titl, 0.2)
 	anchor.scale = anchor.scale.lerp(Vector2.ONE, 0.05)
-
-
+	
+	var zoom_target_amount: float = clamp(max_zoom_amount - (velocity.x / 150), min_zoom_amount , max_zoom_amount)
+	var zoom_target: Vector2 = Vector2(zoom_target_amount, zoom_target_amount)
+	camera_2d.zoom = camera_2d.zoom.lerp(zoom_target, 0.02)
 
 func check_for_finish_line() -> void:
 	if global_position.x > finish_x and finish_x != -1:
