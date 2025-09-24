@@ -20,7 +20,7 @@ polygon = PackedVector2Array(-384, 128, 64, 128, 88, 112, 128, 112, 128, 128, 25
 script = ExtResource("1_k5f4k")
 
 [node name="VisibleCollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-position = Vector2(1736, -16)
+position = Vector2(1664, 168)
 polygon = PackedVector2Array(952, 128, 1088, 88, 1272, 56, 1640, 80, 2120, -80, 2120, 216, 1136, 216)
 script = ExtResource("1_k5f4k")
 metadata/_custom_type_script = "uid://cc535bplgc1qp"
@@ -31,7 +31,13 @@ script = ExtResource("1_k5f4k")
 metadata/_custom_type_script = "uid://cc535bplgc1qp"
 
 [node name="VisibleCollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticBody2D"]
-polygon = PackedVector2Array(1792, 64, 1792, 192, 2560, 192, 2560, 64, 2176, 0)
+polygon = PackedVector2Array(1792, 64, 1840, 144, 2560, 192, 2560, 64, 2176, 0)
+script = ExtResource("1_k5f4k")
+metadata/_custom_type_script = "uid://cc535bplgc1qp"
+
+[node name="VisibleCollisionPolygon2D4" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(-256, 248)
+polygon = PackedVector2Array(1912, -48, 1792, 192, 2792, 152, 2872, 48, 2176, 0)
 script = ExtResource("1_k5f4k")
 metadata/_custom_type_script = "uid://cc535bplgc1qp"
 
@@ -39,10 +45,10 @@ metadata/_custom_type_script = "uid://cc535bplgc1qp"
 position = Vector2(-152, 128)
 
 [node name="FinishLine" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_6phgx")]
-offset_left = 3856.0
-offset_top = -960.0
-offset_right = 3984.0
-offset_bottom = 200.0
+offset_left = 3784.0
+offset_top = -632.0
+offset_right = 3912.0
+offset_bottom = 528.0
 player = NodePath("../Player")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
