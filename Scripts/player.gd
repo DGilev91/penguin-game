@@ -30,6 +30,8 @@ signal level_finished()
 @onready var sprite_2d: Sprite2D = $Anchor/Sprite2D
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var ray_cast_2d: RayCast2D = $RayCast2D
+@onready var gpu_particles_2d: GPUParticles2D = $GPUParticles2D
+
 
 
 var target_titl: float = 0.0
@@ -47,6 +49,7 @@ func _physics_process(delta: float) -> void:
 	check_for_finish_line()
 	
 	if is_on_floor() or coyote_time <= coyote_time_amount:
+		gpu_particles_2d.emitting = true
 		air_jump = true
 		target_titl = 0.0
 		
@@ -58,6 +61,7 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("ui_up"):
 			velocity.y = -jump_forse
 	else:
+		gpu_particles_2d.emitting = false
 		target_titl = clamp(velocity.y / 4,  -30, 30)
 		
 		velocity.x = move_toward(velocity.x, 0, air_friction * delta)
