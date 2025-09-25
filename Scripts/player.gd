@@ -113,3 +113,4 @@ func _physics_process(delta: float) -> void:
 func check_for_finish_line() -> void:
 	if global_position.x > finish_x and finish_x != -1:
 		level_finished.emit()
+		gpu_particles_2d.set_deferred("emitting", false)

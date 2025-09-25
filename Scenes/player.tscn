@@ -55,6 +55,7 @@ polygon = PackedVector2Array(-9, -1, -9, -7, -4, -10, 7, -10, 7, -6, -9, -1)
 target_position = Vector2(0, 300)
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+process_mode = 3
 position = Vector2(-2, 0)
 emitting = false
 amount = 180
